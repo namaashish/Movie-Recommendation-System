@@ -21,11 +21,8 @@ movies = movies_df.merge(credits_df, on="title")
 movies = movies[['movie_id', 'title', 'overview', 'genres', 'keywords', 'cast', 'crew']]
 
 
-
-movies.dropna(inplace=True)
-
 movies.isnull().sum()
-
+movies.dropna(inplace=True)
 movies.duplicated().sum()
 
 movies.iloc[0].genres
@@ -35,7 +32,6 @@ def convert(obj):
     for i in ast.literal_eval(obj):
         L.append(i['name'])
     return L 
-
 movies['genres'] = movies['genres'].apply(convert)
 
 movies.head()['genres']
@@ -89,11 +85,8 @@ new_df["tags"] = new_df['tags'].apply(lambda x:x.lower())
 new_df.head()
 
 import nltk 
-
 from nltk.stem.porter import PorterStemmer
-
 ps = PorterStemmer()
-
 def stem(text):
     y = []
 
@@ -101,31 +94,22 @@ def stem(text):
         y.append(ps.stem(i))
 
     return " ".join(y)
-
 new_df['tags'] = new_df['tags'].apply(stem)
 
 
 from sklearn.feature_extraction.text import CountVectorizer
-
 cv = CountVectorizer(max_features = 5000,stop_words='english')
-
 vectros = cv.fit_transform(new_df['tags']).toarray()
-
 vectros[0]
-
 cv.get_feature_names_out()
 
 from sklearn.metrics.pairwise import cosine_similarity
-
 similarity = cosine_similarity(vectros)
-
 sorted(list(enumerate(similarity[0])), reverse=True, key = lambda x:x[1])[1:6]
-
 def recommend(movie):
     movie_index = new_df[new_df['title'] == movie].index[0]
     distances = similarity[movie_index]
     movies_list = sorted(list(enumerate(distances)), reverse=True, key = lambda x:x[1])[1:6]
-
     for i in movies_list:
         print(new_df.iloc[i[0]].title)
     
@@ -134,11 +118,8 @@ recommend('Avatar')
 new_df.iloc[1216].title
 
 import pickle
-
 pickle.dump(new_df.to_dict(),open("movies_dict.pkl","wb"))
-
 new_df['title'].values
-
 pickle.dump(similarity,open('similarity.pkl','wb'))
 
 
