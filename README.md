@@ -48,8 +48,7 @@ An interactive recommendation engine that suggests similar movies based on conte
 
 ### 🔧 Setup  
 ```bash
-git clone https://github.com/your-username/movie-recommender.git
-cd movie-recommender
+git clone https://github.com/namaashish/Movie-Recommendation-System.git
 pip install -r requirements.txt
 ```
 
@@ -84,15 +83,9 @@ Then open your browser at [http://localhost:8501](http://localhost:8501)
 ---
 
 ## 👨‍💻 Author  
-**Your Name**  
-📧 your.email@example.com • 🌐 [LinkedIn](https://linkedin.com/in/yourprofile) • 🐍 Python | 🎞️ ML | 🎨 Streamlit  
+**Ashish Nama**  
+ • 🐍 Python | 🎞️ ML | 🎨 Streamlit  
 
----
 
-## ⭐ Show Your Support  
-If you like this project, please ⭐ the repo and share it!
 
----
 
-## 📜 License  
-MIT License — feel free to use, improve, and share!
